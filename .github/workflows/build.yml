@@ -21,7 +21,11 @@ jobs:
       - name: Install Theos
         run: |
           export THEOS=~/theos
-          git clone --recursive https://github.com/theos/theos.git $THEOS
+          if [ "${{ matrix.scheme }}" = "roothide" ]; then
+            git clone --recursive https://github.com/roothide/theos.git $THEOS
+          else
+            git clone --recursive https://github.com/theos/theos.git $THEOS
+          fi
           git clone --depth 1 https://github.com/theos/sdks.git ~/theos-sdks
           cp -R ~/theos-sdks/iPhoneOS16.5.sdk $THEOS/sdks/
 
