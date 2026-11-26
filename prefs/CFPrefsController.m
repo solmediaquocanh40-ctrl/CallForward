@@ -1,4 +1,4 @@
-// CFPrefsController.m — CallForward 1.0.0
+// CFPrefsController.m — CallForward 1.0.1
 // Trang Cai dat: cong tac tong, so dich + ma chuyen-khi-ban (**67*) cho tung SIM,
 // them/xem/xoa luat thu cong (duong du phong khi chua gan duoc tu tab Gan day).
 

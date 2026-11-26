@@ -1,4 +1,4 @@
-// Tweak.x — CallForward 1.0.0 (com.anhdang.callforward)
+// Tweak.x — CallForward 1.0.1 (com.anhdang.callforward)
 // Chay trong SpringBoard + InCallService (loc o CallForward.plist), KHONG chay trong MobilePhone (phan do o PhoneUI.x).
 //
 // Nhiem vu: khi co cuoc goi SIM den, doc so nguoi goi bang TelephonyUtilities (TUCallCenter/TUCall, goi qua runtime
@@ -8,7 +8,7 @@
 //       chuyen hong  -> ben goi nghe ban ngay tai may nay (luat cung cua anh Quoc), may khong reo.
 //   - Khong khop -> khong dung vao, cuoc goi reo binh thuong.
 //
-// Ban 1.0.0 la ban DO + THU: moi duong doc so / cat cuoc deu ghi log vao /var/mobile/Documents/CallForward.log
+// Ban 1.0.1 la ban DO + THU: moi duong doc so / cat cuoc deu ghi log vao /var/mobile/Documents/CallForward.log
 // de vong sau chot duong dung tren may that (iPhone 12 Pro, iOS 16.3.1).
 
 #import <Foundation/Foundation.h>
@@ -196,7 +196,7 @@ static CFCallWatcher *gWatcher = nil;
     @autoreleasepool {
         NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
         if (![bundleID isEqualToString:@"com.apple.springboard"] && ![bundleID isEqualToString:@"com.apple.InCallService"]) return;
-        CFLog(@"=== CallForward 1.0.0 nap vao %@ ===", bundleID);
+        CFLog(@"=== CallForward 1.0.1 nap vao %@ ===", bundleID);
         CFLog(@"luat hien co: %lu", (unsigned long)CFRules().count);
         gWatcher = [[CFCallWatcher alloc] init];
         [gWatcher start];

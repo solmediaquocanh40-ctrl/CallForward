@@ -1,4 +1,5 @@
 #import <Preferences/PSListController.h>
+#import <Preferences/PSSpecifier.h>
 
 @interface CFPrefsController : PSListController
 - (void)armSIM1:(id)sender;

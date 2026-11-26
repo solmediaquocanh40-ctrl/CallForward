@@ -1,4 +1,4 @@
-# CallForward 1.0.0
+# CallForward 1.0.1
 
 Tweak chuyển hướng cuộc gọi **theo từng số gọi** cho iPhone 2 SIM (package `com.anhdang.callforward`).
 
@@ -30,7 +30,7 @@ Tweak chuyển hướng cuộc gọi **theo từng số gọi** cho iPhone 2 SIM
 4. Tắt mã 67 (quay `##67#`) rồi gọi lại → kỳ vọng: máy phụ nghe bận, máy chính không reo (lớp dự phòng).
 5. Gửi em file `/var/mobile/Documents/CallForward.log` — trong đó phải có dòng `KHOP LUAT:` và dòng `cat cuoc:` cho lần gọi test.
 
-## Giới hạn đã biết (bản 1.0.0 là bản dò + thử)
+## Giới hạn đã biết (bản 1.0.1 là bản dò + thử)
 
 - Việc nhà mạng có kích hoạt chuyển khi "từ chối = bận" hay không tuỳ nhà mạng của SIM; lớp bận-tại-máy không phụ thuộc nhà mạng.
 - Số gọi ẩn số (không hiện số) thì không khớp luật được.
@@ -39,4 +39,4 @@ Tweak chuyển hướng cuộc gọi **theo từng số gọi** cho iPhone 2 SIM
 
 ## Build
 
-Đẩy cả cây lên repo, file workflow nằm sẵn ở `.github/workflows/build.yml` (bản rời `build-callforward-1.0.0.yml` giao kèm là cùng một nội dung) → commit mới → Actions build 3 scheme: rootful / rootless / roothide.
+Đẩy cả cây lên repo, file workflow nằm sẵn ở `.github/workflows/build.yml` (bản rời `build-callforward-1.0.1.yml` giao kèm là cùng một nội dung) → commit mới → Actions build 3 scheme: rootful / rootless / roothide.

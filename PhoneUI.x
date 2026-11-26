@@ -1,17 +1,19 @@
-// PhoneUI.x — CallForward 1.0.0 (com.anhdang.callforward)
+// PhoneUI.x — CallForward 1.0.1 (com.anhdang.callforward)
 // Chay trong app Dien thoai (com.apple.mobilephone): them muc "Chuyen huong cuoc goi" vao tab Gan day.
 //   - Vuot sang phai tren 1 dong so -> hanh dong "Chuyen huong"
 //   - Cham chu (i) cua so do -> sau khi trang chi tiet mo, bang gan so dich cung hien
 // Bang gan: hien so goi, nhap so dich, chon SIM chinh/phu, Luu -> ghi luat vao kho chung.
 // Sau khi luu, de nghi quay ma **67*<dich># bang dung line SIM do de nha mang kich hoat chuyen-khi-ban.
 //
-// Ban 1.0.0 la ban DO + THU: cac duong doc so tu dong Gan day deu ghi log; neu doc khong ra,
+// Ban 1.0.1 la ban DO + THU: cac duong doc so tu dong Gan day deu ghi log; neu doc khong ra,
 // bang gan van mo voi o so goi de trong de anh tu nhap tay — luat van luu duoc.
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
+#include <string.h>
+#include <stdlib.h>
 #import "CFShared.h"
 
 static id CFPUKVC(id obj, NSString *key) {
@@ -208,16 +210,62 @@ static NSString *CFPUCallerFromCallObject(id callObj, BOOL dumpProps) {
 
 %end // CFRecentsGroup
 
+// ---------- Khoi dong moc Gan day (thu lai nhieu nhip neu class nap cham) ----------
+static BOOL gCFRecentsHooked = NO;
+
+static void CFPUTryHookRecents(NSString *when) {
+    if (gCFRecentsHooked) return;
+    if (NSClassFromString(@"PHRecentsController")) {
+        %init(CFRecentsGroup);
+        gCFRecentsHooked = YES;
+        CFLog(@"GanDay: da moc PHRecentsController (%@) — vuot phai + nut i", when);
+    }
+}
+
+// Liet ke moi class co chu "Recent" tren ban iOS nay — neu PHRecentsController khong ton tai,
+// dong log nay chi thang ten class dung de vong sau doi moc.
+static void CFPUDumpRecentCandidates(void) {
+    @try {
+        unsigned int count = 0;
+        count = objc_getClassList(NULL, 0);
+        if (count == 0) return;
+        Class *list = (Class *)malloc(sizeof(Class) * count);
+        if (!list) return;
+        objc_getClassList(list, count);
+        NSMutableString *found = [NSMutableString string];
+        for (unsigned int i = 0; i < count; i++) {
+            const char *n = class_getName(list[i]);
+            if (n && strstr(n, "Recent")) [found appendFormat:@"%s ", n];
+        }
+        free(list);
+        CFLog(@"GanDay: cac class chua 'Recent' tren may: %@", found.length ? found : @"(khong co class nao)");
+    } @catch (NSException *e) {
+        CFLog(@"GanDay: dump class Recent loi: %@", e);
+    }
+}
+
 %ctor {
     @autoreleasepool {
         NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
         if (![bundleID isEqualToString:@"com.apple.mobilephone"]) return;
-        CFLog(@"=== CallForward 1.0.0 nap vao Dien thoai ===");
-        if (NSClassFromString(@"PHRecentsController")) {
-            %init(CFRecentsGroup);
-            CFLog(@"GanDay: da moc PHRecentsController (vuot phai + nut i)");
-        } else {
-            CFLog(@"GanDay: KHONG thay PHRecentsController tren ban iOS nay — can log de doi class");
+        CFLog(@"=== CallForward 1.0.1 nap vao Dien thoai ===");
+        CFPUTryHookRecents(@"luc nap");
+        if (!gCFRecentsHooked) {
+            CFLog(@"GanDay: PHRecentsController chua xuat hien luc nap — se thu lai cac nhip sau");
+            CFPUDumpRecentCandidates();
+            [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+                CFPUTryHookRecents(@"app chay xong");
+            }];
+            [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidBecomeActiveNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+                CFPUTryHookRecents(@"app active");
+            }];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                CFPUTryHookRecents(@"sau 2s");
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                CFPUTryHookRecents(@"sau 5s");
+                if (!gCFRecentsHooked) CFLog(@"GanDay: VAN khong thay PHRecentsController sau 5s — xem dong dump class o tren");
+            });
         }
     }
 }

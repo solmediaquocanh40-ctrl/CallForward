@@ -1,4 +1,4 @@
-// CFShared.h — CallForward 1.0.0 (com.anhdang.callforward)
+// CFShared.h — CallForward 1.0.1 (com.anhdang.callforward)
 // Phan dung chung cho tweak (SpringBoard / InCallService / MobilePhone) va prefs.
 // Kho cai dat: CFPreferences domain "com.anhdang.callforward" (doc/ghi xuyen tien trinh cung user mobile).
 // Log: /var/mobile/Documents/CallForward.log
