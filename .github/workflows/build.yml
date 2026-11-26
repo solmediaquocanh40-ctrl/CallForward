@@ -1,0 +1,41 @@
+name: Build CallForward 1.0.0
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scheme: [rootless, roothide, rootful]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ldid
+        run: brew install ldid
+
+      - name: Install Theos
+        run: |
+          export THEOS=~/theos
+          git clone --recursive https://github.com/theos/theos.git $THEOS
+          git clone --depth 1 https://github.com/theos/sdks.git ~/theos-sdks
+          cp -R ~/theos-sdks/iPhoneOS16.5.sdk $THEOS/sdks/
+
+      - name: Build package (${{ matrix.scheme }})
+        run: |
+          export THEOS=~/theos
+          if [ "${{ matrix.scheme }}" = "rootful" ]; then
+            make clean package FINALPACKAGE=1
+          else
+            THEOS_PACKAGE_SCHEME=${{ matrix.scheme }} make clean package FINALPACKAGE=1
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CallForward-1.0.0-${{ matrix.scheme }}
+          path: packages/*.deb
