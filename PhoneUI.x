@@ -136,6 +136,13 @@ static NSString *CFPUCallerFromCallObject(id callObj, BOOL dumpProps) {
 @end
 
 // ---------- Moc vao man hinh Gan day ----------
+// PHAI khai bao @interface day du cho PHRecentsController (class rieng cua app Dien thoai, SDK khong co header):
+// Logos chi tao @class forward declaration, gui message cho self / truyen self lam UIViewController* se chet
+// -Werror "receiver type is a forward declaration". Khai bao thua ke UITableViewController + method %new o day.
+@interface PHRecentsController : UITableViewController
+- (NSString *)cf_callerForRowAtIndexPath:(NSIndexPath *)indexPath;
+@end
+
 %group CFRecentsGroup
 
 %hook PHRecentsController
