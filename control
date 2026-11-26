@@ -1,0 +1,9 @@
+Package: com.anhdang.callforward
+Name: CallForward
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Chuyen huong cuoc goi theo tung so: gan so dich ngay trong tab Gan day (vuot phai hoac cham chu i). So da gan goi vao se chuyen qua so dich; chuyen hong thi may bao ban cho ben goi. Ho tro 2 SIM, moi SIM 1 so dich cho ma chuyen-khi-ban (**67*).
+Maintainer: Anh Dang
+Author: Anh Dang
+Section: Tweaks
+Depends: mobilesubstrate

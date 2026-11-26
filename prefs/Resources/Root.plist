@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>CallForward</string>
+			<key>footerText</key>
+			<string>Gan tung so goi: so do goi vao se chuyen qua so dich da gan. Chuyen duoc thi may dich reo binh thuong; chuyen hong thi may nay bao ban cho ben goi. Nguoi khong co trong danh sach luat van reo binh thuong.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.anhdang.callforward</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>label</key>
+			<string>Bat CallForward</string>
+			<key>id</key>
+			<string>enabled</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>SIM chinh — chuyen khi ban</string>
+			<key>footerText</key>
+			<string>So dich cua ma chuyen-khi-ban (**67*) cho SIM chinh. Moi SIM chi chua duoc 1 so dich cho ma 67 tai mot thoi diem.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTextFieldCell</string>
+			<key>defaults</key>
+			<string>com.anhdang.callforward</string>
+			<key>key</key>
+			<string>destSIM1</string>
+			<key>label</key>
+			<string>So dich SIM chinh</string>
+			<key>id</key>
+			<string>destSIM1</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Bat chuyen-khi-ban (quay **67*)</string>
+			<key>action</key>
+			<string>armSIM1:</string>
+			<key>id</key>
+			<string>armSIM1</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Tat chuyen-khi-ban (quay ##67#)</string>
+			<key>action</key>
+			<string>disarmSIM1:</string>
+			<key>id</key>
+			<string>disarmSIM1</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Kiem tra trang thai (quay *#67#)</string>
+			<key>action</key>
+			<string>statusSIM1:</string>
+			<key>id</key>
+			<string>statusSIM1</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>SIM phu — chuyen khi ban</string>
+			<key>footerText</key>
+			<string>So dich cua ma chuyen-khi-ban (**67*) cho SIM phu, doc lap voi SIM chinh.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTextFieldCell</string>
+			<key>defaults</key>
+			<string>com.anhdang.callforward</string>
+			<key>key</key>
+			<string>destSIM2</string>
+			<key>label</key>
+			<string>So dich SIM phu</string>
+			<key>id</key>
+			<string>destSIM2</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Bat chuyen-khi-ban (quay **67*)</string>
+			<key>action</key>
+			<string>armSIM2:</string>
+			<key>id</key>
+			<string>armSIM2</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Tat chuyen-khi-ban (quay ##67#)</string>
+			<key>action</key>
+			<string>disarmSIM2:</string>
+			<key>id</key>
+			<string>disarmSIM2</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Kiem tra trang thai (quay *#67#)</string>
+			<key>action</key>
+			<string>statusSIM2:</string>
+			<key>id</key>
+			<string>statusSIM2</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Them luat thu cong</string>
+			<key>footerText</key>
+			<string>Duong du phong: gan luat ngay tai day neu chua gan duoc tu tab Gan day trong app Dien thoai.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTextFieldCell</string>
+			<key>defaults</key>
+			<string>com.anhdang.callforward</string>
+			<key>key</key>
+			<string>newRuleCaller</string>
+			<key>label</key>
+			<string>So goi</string>
+			<key>id</key>
+			<string>newRuleCaller</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTextFieldCell</string>
+			<key>defaults</key>
+			<string>com.anhdang.callforward</string>
+			<key>key</key>
+			<string>newRuleDest</string>
+			<key>label</key>
+			<string>So dich</string>
+			<key>id</key>
+			<string>newRuleDest</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Them luat — ap cho SIM chinh</string>
+			<key>action</key>
+			<string>addRuleSIM1:</string>
+			<key>id</key>
+			<string>addRuleSIM1</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Them luat — ap cho SIM phu</string>
+			<key>action</key>
+			<string>addRuleSIM2:</string>
+			<key>id</key>
+			<string>addRuleSIM2</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Quan ly luat</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Xem danh sach luat</string>
+			<key>action</key>
+			<string>showRules:</string>
+			<key>id</key>
+			<string>showRules</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSTextFieldCell</string>
+			<key>defaults</key>
+			<string>com.anhdang.callforward</string>
+			<key>key</key>
+			<string>delRuleCaller</string>
+			<key>label</key>
+			<string>So goi can xoa luat</string>
+			<key>id</key>
+			<string>delRuleCaller</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Xoa luat cua so tren</string>
+			<key>action</key>
+			<string>deleteRule:</string>
+			<key>id</key>
+			<string>deleteRule</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>CallForward 1.0.0 — com.anhdang.callforward — Log: /var/mobile/Documents/CallForward.log</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>CallForward</string>
+</dict>
+</plist>
